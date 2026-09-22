@@ -1,0 +1,39 @@
+name: CLA
+
+# Reusable workflow. Every geastack repository calls this from a thin
+# .github/workflows/cla.yml of its own; the CLA text and the signature record
+# live here, so a contributor signs once and it counts for every repository.
+#
+# The caller must declare the triggers (issue_comment, pull_request_target),
+# the job-level permissions, and pass `secrets: inherit` so that
+# CLA_SIGNATURES_TOKEN -- an org secret holding a token that can write to
+# this repository -- reaches the action. The job's own GITHUB_TOKEN is scoped
+# to the calling repository and cannot commit the signature here.
+on:
+  workflow_call:
+    secrets:
+      CLA_SIGNATURES_TOKEN:
+        required: true
+
+jobs:
+  cla:
+    name: Signed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: contributor-assistant/github-action@v2.6.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_SIGNATURES_TOKEN }}
+        with:
+          path-to-document: https://github.com/geastack/.github/blob/main/CLA.md
+          remote-organization-name: geastack
+          remote-repository-name: .github
+          path-to-signatures: signatures/cla.json
+          branch: main
+          allowlist: dashersw,*[bot]
+          custom-notsigned-prcomment: >
+            Thanks for the pull request. Before it can be merged, please read the
+            [GeaStack Contributor License Agreement](https://github.com/geastack/.github/blob/main/CLA.md)
+            and sign it by posting a comment here with exactly:
+          custom-pr-sign-comment: I have read the CLA Document and I hereby sign the CLA
+          custom-allsigned-prcomment: All contributors have signed the CLA.
