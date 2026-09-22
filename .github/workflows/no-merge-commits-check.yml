@@ -1,0 +1,16 @@
+name: No merge commits check
+
+# The caller for this repository itself. Every other geastack repository
+# carries the same file as .github/workflows/no-merge-commits.yml; here that
+# name is taken by the reusable workflow it calls.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  history:
+    uses: geastack/.github/.github/workflows/no-merge-commits.yml@main

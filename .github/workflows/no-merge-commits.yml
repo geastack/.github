@@ -1,0 +1,35 @@
+name: No merge commits
+
+# Reusable workflow. Fails when a pull request contains a merge commit, so a
+# contributor has to rebase onto the base branch instead of merging it in.
+# Branch rulesets cannot reach a branch that lives in a fork; this check runs
+# in our repository on every pull request, wherever the branch lives, and the
+# main-branch ruleset requires it before merging.
+on:
+  workflow_call:
+
+jobs:
+  history:
+    name: No merge commits
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Look for commits with more than one parent
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          merges=$(gh api --paginate "repos/$REPO/pulls/$PR/commits" \
+            --jq '.[] | select(.parents | length > 1) | .sha')
+          if [ -n "$merges" ]; then
+            echo "This pull request contains merge commits:"
+            echo "$merges"
+            echo
+            echo "Rebase the branch onto its base instead of merging the base into it:"
+            echo "  git rebase origin/${{ github.event.pull_request.base.ref }}"
+            echo "or use 'Update with rebase' on the pull request."
+            exit 1
+          fi
+          echo "Linear history: no merge commits in this pull request."
