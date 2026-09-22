@@ -13,10 +13,10 @@ TypeScript. JSX. Real CSS. Native binaries for every screen you ship on.
 GeaStack is a native device UI stack for building product interfaces with
 TypeScript, JSX, and real CSS, then compiling them ahead of time to native
 binaries for microcontrollers, Linux and Windows desktops, macOS, iOS,
-Android, and Xbox—and to native servers, where the same compiler turns real
+Android, and Xbox—and to native servers, where the same compiler turns
 `node:http` applications into binaries.
 
-No browser on the device. No JavaScript VM on the device. The binary is the app.
+The device runs no browser and no JavaScript VM. The compiled binary is the app.
 
 ## Watch It Run
 
@@ -158,7 +158,7 @@ native targets.
 | iOS | Native mobile apps and device companion experiences |
 | Windows | Win32 desktop apps driven by real child-window controls |
 | Android | Gea apps packaged as a native Android APK, rendered through a WebView |
-| Node services | Real `node:http` servers compiled to native binaries |
+| Node services | `node:http` servers compiled to native binaries |
 | Xbox | Games and 3D scenes on a retail Series X/S in Dev Mode, through ANGLE on D3D11 |
 
 ## Start Here
@@ -205,7 +205,7 @@ npx gea flash --board <your-board> --monitor
 | [`android`](https://github.com/geastack/android) | Android WebView target |
 | [`linux`](https://github.com/geastack/linux) | Native Linux desktop build targets |
 | [`simulator`](https://github.com/geastack/simulator) | Web simulator and browser-based development loop |
-| [`node-compat`](https://github.com/geastack/node-compat) | Real `node:http` applications compiled to native binaries |
+| [`node-compat`](https://github.com/geastack/node-compat) | `node:http` applications compiled to native binaries |
 | [`native-webgl-angle`](https://github.com/geastack/native-webgl-angle) | Native WebGL compatibility layer for the Three.js path |
 | [`skills`](https://github.com/geastack/skills) | Agent skills for building GeaStack apps and targets |
 
@@ -221,11 +221,12 @@ npx gea flash --board <your-board> --monitor
   custom properties, gradients, shadows, and font rasterization are part of the
   native UI path.
 - **Hardware-aware tooling.** Board selection, serial discovery, ESP-IDF setup,
-  flashing, monitoring, OTA, screenshots, and target metadata are first-class.
+  flashing, monitoring, OTA, screenshots, and target metadata are built into
+  the CLI.
 
 ## Contributing
 
-GeaStack is not asking contributors to memorize the whole stack. Good first
+Contributing does not require memorizing the whole stack. Good first
 contributions usually live at one boundary:
 
 - improve an example app;
