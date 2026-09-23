@@ -157,7 +157,7 @@ native targets.
 | macOS | Native desktop apps and companion tools |
 | iOS | Native mobile apps and device companion experiences |
 | Windows | Win32 desktop apps driven by real child-window controls |
-| Android | Gea apps packaged as a native Android APK, rendered through a WebView |
+| Android | Native Android apps: compiled with the NDK, rendered with real Android views |
 | Node services | `node:http` servers compiled to native binaries |
 | Xbox | Games and 3D scenes on a retail Series X/S in Dev Mode, through ANGLE on D3D11 |
 
@@ -202,7 +202,7 @@ npx gea flash --board <your-board> --monitor
 | [`targets`](https://github.com/geastack/targets) | ESP32, RP2350, board metadata, device helpers, flash, monitor, OTA, and screenshots |
 | [`apple`](https://github.com/geastack/apple) | macOS and iOS native targets |
 | [`windows`](https://github.com/geastack/windows) | Native Windows (Win32) build target and Windows SDK bindings |
-| [`android`](https://github.com/geastack/android) | Android WebView target |
+| [`android`](https://github.com/geastack/android) | Native Android target |
 | [`linux`](https://github.com/geastack/linux) | Native Linux desktop build targets |
 | [`simulator`](https://github.com/geastack/simulator) | Web simulator and browser-based development loop |
 | [`node-compat`](https://github.com/geastack/node-compat) | `node:http` applications compiled to native binaries |
